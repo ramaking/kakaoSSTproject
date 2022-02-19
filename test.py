@@ -11,3 +11,5 @@ with sr.Microphone(sample_rate=16000) as source:
     audio = r.listen(source)
 res = requests.post(url, headers=header, data=audio.get_raw_data())
 print(res.text)
+
+
