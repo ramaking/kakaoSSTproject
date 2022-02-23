@@ -5,7 +5,7 @@ import speech_recognition as sr
 
 url = "https://kakaoi-newtone-openapi.kakao.com/v1/recognize"
 header = {
-        #"Transfer-Encoding: chunked"
+        #TODO:"Transfer-Encoding: chunked"
         "Content-Type": "application/octet-stream",
         "Authorization" : "KakaoAK " + "5bdcd793f13bebf5e4e874d636b694c0"
          }
@@ -15,6 +15,7 @@ def record():
     global canRecording
     print("recording start")
     r = sr.Recognizer()
+    #마이크 말고 스테레오 믹스
     with sr.Microphone(sample_rate=16000) as source:
         audio = r.listen(source)
     canRecording = True
