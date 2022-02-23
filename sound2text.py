@@ -10,13 +10,18 @@ header = {
         "Authorization" : "KakaoAK " + "5bdcd793f13bebf5e4e874d636b694c0"
          }
 canRecording = True
+device_index = 0
+for device_index, name in enumerate(sr.Microphone.list_microphone_names()):
+    #print(f'{device_index}, {name}')
+    if name == '스테레오 믹스(Realtek(R) Audio)':
+        break
 
 def record():
     global canRecording
     print("recording start")
     r = sr.Recognizer()
     #마이크 말고 스테레오 믹스
-    with sr.Microphone(sample_rate=16000) as source:
+    with sr.Microphone(device_index=device_index,sample_rate=16000) as source:
         audio = r.listen(source)
     canRecording = True
     res = requests.post(url, headers=header, data=audio.get_raw_data())
