@@ -1,5 +1,3 @@
-
-
 import requests
 import json
 from collections import OrderedDict
@@ -9,6 +7,7 @@ room_id = 12345
 header = {
     "Content-Type": "application/json"
 }
+qid_list = []
 
 body = OrderedDict()
 
@@ -20,7 +19,12 @@ if res.status_code == 200:
     print('connection succese')
     # print(res.json())
     jsonRes = json.loads(res.text)
-    print(jsonRes['payload'])
+    questionNum = len(jsonRes['payload']["questions"])
+    if len(qid_list) < questionNum :
+        for i in range(questionNum - len(qid_list)) :
+            qid_list.append(jsonRes['payload']["questions"][len(qid_list)]['qid'])
+  
+        print(qid_list)
 else :
     print('connection fail')
     # jsonRes = json.loads(res.json())

@@ -1,24 +1,22 @@
-
 import requests
 import json
+from collections import OrderedDict
 
 url = "http://localhost:8888/api"
-rood_id = 12345
+room_id = 12345
 header = {
     "Content-Type": "application/json"
 }
+question_num = 0
 
-body = {
-    'cmd': 'play',
-    'payload': {
-        'roomid': '1234',
-        # 'qid': 'f9c3d2a6-4e0d-4359-99e4-b1d1c4e1c586'
-    }
-}
+# 수정예정
+pid_list = '353ea0ed-616f-474c-8446-671feebbe723'
 
+body = OrderedDict()
 
-res = requests.post(url, headers=header, json={'cmd': 'play', 'payload': {
-                    'roomid': '12345'
-                    # ,  'qid': 'daba40c0-5f11-4df6-a253-e4b79368b3b7'
-                     }})
+body['cmd'] = "play"
+
+body['payload'] = {"roomid":room_id,"pid":pid_list}
+
+res = requests.post(url, headers=header, json=body)
 print(res.status_code)
