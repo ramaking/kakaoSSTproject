@@ -55,9 +55,6 @@ def send_play():
         next_question_num = next_question_num+1
         
 
-
-
-
 kakao_url = "https://kakaoi-newtone-openapi.kakao.com/v1/recognize"
 kakao_header = {
         #"Transfer-Encoding": "chunked",
@@ -92,5 +89,4 @@ while True:
         t = threading.Thread(target=record)
         t.start()
         canRecording = False
-
 
