@@ -2,18 +2,19 @@ import requests
 import json
 from collections import OrderedDict
 
-def sendPlay(roomId, pid) :
+def sendPlay(roomId, imageKey) :
     url = "http://localhost:8888/api"
     header = {
         "Content-Type": "application/json"
     }
-    question_num = 0
 
     body = OrderedDict()
 
-    body['cmd'] = "play"
+    body['cmd'] = "getWordCloud"
 
-    body['payload'] = {"roomid":roomId,"qid":pid}
+    body['payload'] = {"roomid":roomId,"key":imageKey, "value":"image"}
 
     res = requests.post(url, headers=header, json=body)
     print(res.status_code)
+
+sendPlay(12345, "wordcloud")
